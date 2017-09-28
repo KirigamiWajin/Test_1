@@ -1,0 +1,34 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Редактировать пользователя";
+}
+@model WebApplication1.Models.User
+
+<h2>Id Пользователя @Model.Id</h2>
+@using (Html.BeginForm("EditUser", "Home", FormMethod.Post))
+{
+    <fieldset>
+        @Html.HiddenFor(m => m.Id)
+        <p>
+            @Html.LabelFor(m => m.FIO, "Фамилия Имя Отчество")
+            <br />
+            @Html.EditorFor(m => m.FIO)
+        </p>
+        <p>
+            @Html.LabelFor(m => m.Birthday, "Дата Рождения")
+            <br />
+            @Html.EditorFor(m => m.Birthday)
+        </p>
+        <p>
+            @Html.LabelFor(m => m.Email, "Email")
+            <br />
+            @Html.EditorFor(m => m.Email)
+        </p>
+        <p>
+            @Html.LabelFor(m => m.phone, "Телефон")
+            <br />
+            @Html.EditorFor(m => m.phone)
+        </p>
+        <p><input type="submit" value="Отправить" /></p>
+    </fieldset>
+}    

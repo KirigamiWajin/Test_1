@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="DbConnection-Web.config Connection String" description="DbConnection Строка подключения в web.config, используемая приложением для доступа к базе данных." defaultValue="Data Source=localhost\SQLExpress;Initial Catalog=Client;Integrated Security=True" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Test_1\\WebApplication1\\WebApplication1\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='DbConnection']/@connectionString" />
+  </parameter>
+</parameters>

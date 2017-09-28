@@ -1,0 +1,92 @@
+﻿@{
+    ViewBag.Title = "Тестовая задача";
+}
+<form method="post" enctype="multipart/form-data">
+    <div>
+    <input type="file" name="file"  required/><br />
+    <button type="submit" > Импорт</button><br />
+</div>
+</form>
+<h2>Тестовое задание</h2>
+<div style="width:90%; margin:0 auto;">
+    <table id="myTable">
+        <thead>
+            <tr>
+                <th>Код</th>
+                <th>ФИО</th>
+                <th>Дата Рождения</th>
+                <th>Email</th>
+                <th>Телефон</th>
+                <th>Редактировать Запись</th>
+            </tr>
+        </thead>
+    </table>
+</div>
+<style>
+    tr.even {
+        background-color: #F5F5F5 !important;
+    }
+</style>
+
+<div id="DataBase">
+    @* Load datatable css *@
+    <link href="//cdn.datatables.net/1.10.9/css/jquery.dataTables.min.css" rel="stylesheet" />
+    @* Load datatable js *@
+    @section Scripts{
+        <script src="//cdn.datatables.net/1.10.9/js/jquery.dataTables.min.js"></script>
+   
+
+
+
+        <script language="javascript" type="text/javascript">
+            $(document).ready(function () {
+                $('#myTable').DataTable({
+                    "ajax": {
+                        "url": "/home/loaddata",
+                        "type": "GET",
+                        "datatype": "json"
+                    },
+                    "columns": [
+                        { "data": "Id", "visible": false, "searchable": false },
+                        { "data": "FIO", "autoWidth": true },
+                        { "data": "Birthday", "autoWidth": true },
+                        { "data": "Email", "autoWidth": true },
+                        { "data": "phone", "autoWidth": true },
+                        {
+                            "title": "Редактировать Запись",
+                            "data": "Id",
+                            "searchable": false,
+                            "sortable": false,
+                            "autoWidth": true,
+                            "render": function (data, type, full, meta) {
+                                return '<a href="@Url.Action("EditUser","Home")?id=' + data + '" class="editUser">Редактировать</a>';
+                            }
+                        }
+                    ], 
+                    language: {
+                        "processing": "Подождите...",
+                        "search": "Поиск:",
+                        "lengthMenu": "Показать _MENU_ записей",
+                        "info": "Записи с _START_ до _END_ из _TOTAL_ записей",
+                        "infoEmpty": "Записи с 0 до 0 из 0 записей",
+                        "infoFiltered": "(отфильтровано из _MAX_ записей)",
+                        "infoPostFix": "",
+                        "loadingRecords": "Загрузка записей...",
+                        "zeroRecords": "Записи отсутствуют.",
+                        "emptyTable": "В таблице отсутствуют данные",
+                        "paginate": {
+                            "first": "Первая",
+                            "previous": "Предыдущая",
+                            "next": "Следующая",
+                            "last": "Последняя"
+                        },
+                        "aria": {
+                            "sortAscending": ": активировать для сортировки столбца по возрастанию",
+                            "sortDescending": ": активировать для сортировки столбца по убыванию"
+                        }
+                    }
+                });
+            });
+        </script>
+    }
+</div>
